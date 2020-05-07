@@ -1,10 +1,10 @@
 import React from "react";
 
 const Page1 = () => {
-  render(
+  return (
     <div>
       <h1>The ggoooooo</h1>
-    </div>,
+    </div>
   );
 };
 
