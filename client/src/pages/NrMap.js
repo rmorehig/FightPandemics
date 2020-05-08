@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const url = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`;
@@ -58,7 +58,7 @@ const NrMap = () => {
     });
 
     getMyLocation();
-  }, [createGoogleMap, createMarker, places]);
+  }, []);
 
   const createGoogleMap = () => {
     return new window.google.maps.Map(googleMapRef.current, {
@@ -93,7 +93,7 @@ const NrMap = () => {
       createMarker();
       placeDetails();
     }
-  }, [createMarker, hospitals, placeDetails]);
+  }, [hospitals]);
 
   const placeDetails = () => {
     hospitals.map((place) => {
@@ -122,7 +122,7 @@ const NrMap = () => {
     });
   };
 
-  const createMarker = useCallback(() => {
+  const createMarker = () => {
     const image = {
       url: "https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
       size: new window.google.maps.Size(71, 71),
@@ -145,7 +145,7 @@ const NrMap = () => {
       position: { lat: coordinates.latitude, lng: coordinates.longitude },
       map: googleMap.current,
     });
-  });
+  };
 
   const getMyLocation = () => {
     const location = window.navigator && window.navigator.geolocation;
